@@ -14,7 +14,6 @@ PRODUCTS = {
     "chips": 10,
     "juice": 35
 }
-
 cart = {}
 
 def clear_screen():
@@ -65,18 +64,15 @@ def generate_bill():
     total = sum(PRODUCTS[item] * qty for item, qty in cart.items())
     tax = round(total * 0.18, 2)
     final = total + tax
-
     bill = []
     bill.append("=" * 35)
-    bill.append("        SMARTMART BILL")
+    bill.append(" SMARTMART BILL")
     bill.append("=" * 35)
     bill.append(f"Date: {datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}")
     bill.append("-" * 35)
-
     for item, qty in cart.items():
         cost = PRODUCTS[item] * qty
         bill.append(f"{item.title():15s} x {qty:<3d} = ₹{cost}")
-
     bill.append("-" * 35)
     bill.append(f"Subtotal: ₹{total}")
     bill.append(f"Tax (18%): ₹{tax}")
@@ -84,16 +80,14 @@ def generate_bill():
     bill.append("=" * 35)
     bill.append("Thank you for shopping at SmartMart!")
     bill.append("=" * 35)
-
     bill_text = "\n".join(bill)
-
     # Print to screen
     print("\n" + bill_text)
-
     # Save to file
+    if os.path.exists("bill.txt"):
+        print("⚠️ 'bill.txt' already exists. Overwriting...")
     with open("bill.txt", "w") as f:
         f.write(bill_text)
-
     print("\n🧾 Bill saved as 'bill.txt' in current folder.")
     cart.clear()
 
@@ -106,7 +100,6 @@ def main():
         print("4. Generate Bill")
         print("5. Exit")
         choice = input("\nEnter your choice (1-5): ")
-
         if choice == "1":
             show_products()
         elif choice == "2":
@@ -116,7 +109,7 @@ def main():
         elif choice == "4":
             generate_bill()
         elif choice == "5":
-            print("\n👋 Thank you for using VitMart!")
+            print("\n👋 Thank you for using SmartMart!")
             break
         else:
             print("❌ Invalid choice. Try again.")
