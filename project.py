@@ -4,7 +4,7 @@ import os
 # Predefined item list with prices
 PRODUCTS = {
     "milk": 40,
-    "bread": 25,
+    "bread": 60,
     "eggs": 6,
     "rice": 70,
     "sugar": 45,
@@ -12,8 +12,12 @@ PRODUCTS = {
     "soap": 30,
     "salt": 20,
     "chips": 10,
-    "juice": 35
-}
+    "juice": 35,
+    "foccacia": 55,
+    "samosa": 10,
+    "pumpkin": 10,
+    "chocolate": 250
+    }
 
 cart = {}
 
@@ -82,7 +86,7 @@ def generate_bill():
     bill.append(f"Tax (18%): ₹{tax}")
     bill.append(f"Total: ₹{final}")
     bill.append("=" * 35)
-    bill.append("Thank you for shopping at SmartMart!")
+    bill.append("Thank you for shopping at VITMart!")
     bill.append("=" * 35)
 
     bill_text = "\n".join(bill)
@@ -99,7 +103,7 @@ def generate_bill():
 
 def main():
     while True:
-        print("\n====== SMARTMART BILLING SYSTEM ======")
+        print("\n====== VITMART BILLING SYSTEM ======")
         print("1. Show Products")
         print("2. Add Item to Cart")
         print("3. View Cart")
@@ -116,7 +120,7 @@ def main():
         elif choice == "4":
             generate_bill()
         elif choice == "5":
-            print("\n👋 Thank you for using VitMart!")
+            print("\n👋 Thank you for using VITMart!")
             break
         else:
             print("❌ Invalid choice. Try again.")
