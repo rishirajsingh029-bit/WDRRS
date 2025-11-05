@@ -69,7 +69,7 @@ def generate_bill():
     # Display bill before payment selection
     print("\n🧾 Generating Bill:")
     print("=" * 35)
-    print(" SMARTMART BILL")
+    print(" VITMART BILL")
     print("=" * 35)
     print(f"Date: {datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}")
     print("-" * 35)
@@ -106,7 +106,7 @@ def generate_bill():
     # Generate final bill with payment method
     bill = []
     bill.append("=" * 35)
-    bill.append(" SMARTMART BILL")
+    bill.append(" VITMART BILL")
     bill.append("=" * 35)
     bill.append(f"Date: {datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}")
     bill.append("-" * 35)
@@ -119,7 +119,7 @@ def generate_bill():
     bill.append(f"Total: ₹{final}")
     bill.append(f"Payment Method: {payment_method}")
     bill.append("=" * 35)
-    bill.append("Thank you for shopping at SmartMart!")
+    bill.append("Thank you for shopping at VITMart!")
     bill.append("=" * 35)
     bill_text = "\n".join(bill)
 
@@ -138,7 +138,7 @@ def generate_bill():
 
 def main():
     while True:
-        print("\n====== SMARTMART BILLING SYSTEM ======")
+        print("\n====== VITMART BILLING SYSTEM ======")
         print("1. Show Products")
         print("2. Add Item to Cart")
         print("3. View Cart")
@@ -154,7 +154,7 @@ def main():
         elif choice == "4":
             generate_bill()
         elif choice == "5":
-            print("\n👋 Thank you for using SmartMart!")
+            print("\n👋 Thank you for using VITMart!")
             break
         else:
             print("❌ Invalid choice. Try again.")
