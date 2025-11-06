@@ -60,13 +60,68 @@ def view_cart():
 def generate_bill():
     if not cart:
         print("\n⚠️ Cannot generate bill — cart is empty.")
-        return
+        return False  # Return False to continue to main menu
+
     total = sum(PRODUCTS[item] * qty for item, qty in cart.items())
     tax = round(total * 0.18, 2)
     final = total + tax
+
+    # Display bill before payment decision
+    print("\n🧾 Generating Bill:")
+    print("=" * 35)
+    print(" VITMart BILL")
+    print("=" * 35)
+    print(f"Date: {datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}")
+    print("-" * 35)
+    for item, qty in cart.items():
+        cost = PRODUCTS[item] * qty
+        print(f"{item.title():15s} x {qty:<3d} = ₹{cost}")
+    print("-" * 35)
+    print(f"Subtotal: ₹{total}")
+    print(f"Tax (18%): ₹{tax}")
+    print(f"Total: ₹{final}")
+    print("=" * 35)
+
+    # Prompt to proceed with payment or return to main menu
+    print("\nWhat would you like to do next?")
+    print("1. Proceed to Payment")
+    print("2. Return to Main Menu")
+    while True:
+        choice = input("\nEnter your choice (1-2): ")
+        if choice == "1":
+            print("\n✅ Proceeding to payment...")
+            break
+        elif choice == "2":
+            print("\n✅ Returning to main menu...")
+            return False  # Return False to keep cart and continue to main menu
+        else:
+            print("❌ Invalid choice. Please choose 1 or 2.")
+
+    # Payment options
+    print("\nSelect Payment Method:")
+    print("1. Cash")
+    print("2. Credit Card")
+    print("3. UPI")
+    print("4. Debit Card")
+    while True:
+        payment_choice = input("\nEnter payment method (1-4): ")
+        payment_methods = {
+            "1": "Cash",
+            "2": "Credit Card",
+            "3": "UPI",
+            "4": "Debit Card"
+        }
+        if payment_choice in payment_methods:
+            payment_method = payment_methods[payment_choice]
+            print(f"✅ Payment selected: {payment_method}")
+            break
+        else:
+            print("❌ Invalid payment method. Please choose 1-4.")
+
+    # Generate final bill with payment method
     bill = []
     bill.append("=" * 35)
-    bill.append(" SMARTMART BILL")
+    bill.append(" VITMart BILL")
     bill.append("=" * 35)
     bill.append(f"Date: {datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}")
     bill.append("-" * 35)
@@ -77,23 +132,30 @@ def generate_bill():
     bill.append(f"Subtotal: ₹{total}")
     bill.append(f"Tax (18%): ₹{tax}")
     bill.append(f"Total: ₹{final}")
+    bill.append(f"Payment Method: {payment_method}")
     bill.append("=" * 35)
-    bill.append("Thank you for shopping at SmartMart!")
+    bill.append("Thank you for shopping at VITMart!")
     bill.append("=" * 35)
     bill_text = "\n".join(bill)
-    # Print to screen
+
+    # Print final bill to screen
     print("\n" + bill_text)
-    # Save to file
+
+    # Save to file with utf-8 encoding
     if os.path.exists("bill.txt"):
         print("⚠️ 'bill.txt' already exists. Overwriting...")
-    with open("bill.txt", "w") as f:
+    with open("bill.txt", "w", encoding='utf-8') as f:
         f.write(bill_text)
     print("\n🧾 Bill saved as 'bill.txt' in current folder.")
+
+    # Clear cart after successful bill generation
     cart.clear()
+    print("\n👋 Thank you for shopping at VITMart!")
+    return True  # Return True to exit the program after payment
 
 def main():
     while True:
-        print("\n====== SMARTMART BILLING SYSTEM ======")
+        print("\n====== VITMART BILLING SYSTEM ======")
         print("1. Show Products")
         print("2. Add Item to Cart")
         print("3. View Cart")
@@ -107,9 +169,10 @@ def main():
         elif choice == "3":
             view_cart()
         elif choice == "4":
-            generate_bill()
+            if generate_bill():  # If True, exit the program
+                break
         elif choice == "5":
-            print("\n👋 Thank you for using SmartMart!")
+            print("\n👋 Thank you for using VITMart!")
             break
         else:
             print("❌ Invalid choice. Try again.")
@@ -117,3 +180,4 @@ def main():
 if __name__ == "__main__":
     clear_screen()
     main()
+
