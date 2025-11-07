@@ -4,7 +4,7 @@ import os
 # Predefined item list with prices
 PRODUCTS = {
     "milk": 40,
-    "bread": 25,
+    "bread": 30,
     "eggs": 6,
     "rice": 70,
     "sugar": 45,
