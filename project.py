@@ -155,7 +155,7 @@ def generate_bill():
 
 def main():
     while True:
-        print("\n====== VITMART BILLING SYSTEM ======")
+        print("\n======VITMART BILLING SYSTEM======")
         print("1. Show Products")
         print("2. Add Item to Cart")
         print("3. View Cart")
