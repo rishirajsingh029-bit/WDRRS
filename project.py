@@ -12,7 +12,11 @@ PRODUCTS = {
     "soap": 30,
     "salt": 20,
     "chips": 10,
-    "juice": 35
+    "juice": 35,
+    "orange": 50,
+    "ketchup": 100,
+    "pencil": 2,
+    "cornflakes": 300
 }
 cart = {}
 
